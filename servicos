@@ -1,7 +1,7 @@
 namespace Servicos
 {
    
-    interface ITaxaServico //interface criada
+    interface ITxServico //interface criada
     {
         double Taxa(double amount);
     }
