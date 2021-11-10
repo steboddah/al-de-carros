@@ -1,0 +1,40 @@
+using System;
+using System.Globalization;
+
+namespace interfaces
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("Entre com os dados da locação:");// dados do usuario
+            Console.Write("modelo: ");
+            string model = Console.ReadLine();
+
+            Console.Write("Check -in (dd / MM / yyyy HH: mm): ");
+            DateTime start = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            Console.Write("Check -out (dd / MM / yyyy HH: mm): ");
+            DateTime finish = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            Console.Write("Entre com o preço por hora: ");
+            double hour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Console.Write("Entre com preço por dia: ");
+            double day = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+       
+            AluguelCarro aluguelCarro = new AluguelCarro(start, finish, new Veiculo(model));//instanciar dados
+
+            //instanciando os dados que o usuário digitou, a quantidade de dias e horas que o usuário alugou o carro
+            ServicoLocacao servicoDeAluguel = new ServicoLocacao(hour, day, new TaxaServicoBR());
+
+       
+            servicoDeAluguel.ProcessoFatura(aluguelCarro);//chamando metodo
+
+            Console.WriteLine("FATURA: ");
+            Console.WriteLine(aluguelCarro._fatura);
+        }
+    }
+}
