@@ -1,0 +1,20 @@
+namespace Avaliação.Entidades
+{
+    class Veiculo
+    {
+       
+        public string Modelo { get; set; } //criando a propriedade
+
+      
+        public Veiculo()
+        {  //criando construtor vazio
+        }
+
+        
+        public Veiculo(string modelo)//criando construtor
+        {
+            Modelo = modelo;
+        }
+
+    }
+}
