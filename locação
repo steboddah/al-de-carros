@@ -1,0 +1,41 @@
+using System;
+
+
+namespace Locacao
+{
+    class Locacao
+    {
+     
+        public double PrecoPorHora { get; private set; }//criando uma propiedade
+        public double PrecoPorDia { get; private set; }
+        private ITaxaServico TaxaServico;
+
+   
+        public ServicoLocacao()
+        {                      //construtor
+        }
+
+      
+        public ServicoLocacao(double precoPorHora, double precoPorDia, ITaxaServico taxaServico)
+        {
+            PrecoPorHora = precoPorHora; //construtor
+            PrecoPorDia = precoPorDia;
+            TaxaServico = taxaServico;
+        }
+        public void ProcessoFatura(AluguelCarro aluguelCarro)
+        {
+            TimeSpan duracao = aluguelCarro.Checkout.Subtract(aluguelCarro.Checkin);
+            double pagamento = 0.0;
+            if (duracao.TotalHours <= 12.0)
+            {
+               pagamento = PrecoPorHora * Math.Ceiling(duracao.TotalHours);
+            }
+            else
+            {
+                pagamento = PrecoPorDia * Math.Ceiling(duracao.TotalDays);
+            }
+            double taxa = TaxaServico.Taxa(pagamento);
+            aluguelCarro._fatura = new Fatura(pagamento, taxa);
+        }
+    }
+}
