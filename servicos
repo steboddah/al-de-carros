@@ -1,0 +1,8 @@
+namespace Servicos
+{
+   
+    interface ITaxaServico //interface criada
+    {
+        double Taxa(double amount);
+    }
+}
