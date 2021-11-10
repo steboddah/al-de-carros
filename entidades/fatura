@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Globalization;
+
+namespace Avaliação.Entidades
+{
+    class Fatura
+    {
+        public double Pagamento { get; private set; } //criando propriedades
+  
+        public double Taxa { get; private set; }
+
+       
+        public Fatura() //criando construtor vazio
+        {
+        }
+
+    
+        public Fatura(double pagamento, double taxa)    //criando contrutor
+        {
+            Pagamento = pagamento;
+            Taxa = taxa;
+        }
+
+       
+        public double PagamentoTotal
+        {
+            get { return Pagamento + Taxa; } //método de pagamento
+        }
+
+       
+        public override string ToString()//conversor para string
+        {
+            return "Pagamento: "
+            + Pagamento.ToString("F2", CultureInfo.InvariantCulture)
+            + "\nTaxa: "
+            + Taxa.ToString("F2", CultureInfo.InvariantCulture)
+            + "\nPagamento Total: "
+            + PagamentoTotal.ToString("F2", CultureInfo.InvariantCulture);
+        }
+
+    }
+}
